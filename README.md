@@ -2,6 +2,10 @@
 
 This is a tracking location app built using Expo and React, specifically designed for drivers who want to share their real-time location with others. The app utilizes websockets for real-time communication and updates.
 
+## Demo
+
+![demo_reco](https://github.com/joshjo/recodriver/assets/1036364/fb111665-e55d-4da0-ac51-8599c65bd8a9)
+
 ## Features
 
 - **Real-time Location Sharing**: The app continuously updates the driver's location and sends it to the server in real-time using websockets.
