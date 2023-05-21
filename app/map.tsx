@@ -1,25 +1,15 @@
 import { useRef, useEffect, useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from "react-native";
 import MapView, { Marker } from "react-native-maps";
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useRouter } from "expo-router";
 import * as Location from 'expo-location';
-
-import { TOKEN_KEY } from "@constants";
-import { useAuth } from "@context/auth";
-
 
 const TWO_SECONDS = 2000;
 
 export default function Details() {
-  const router = useRouter();
   const mapRef = useRef(null);
   const [region, setRegion] = useState(null);
-  const [message, setMessage] = useState("");
-  const [isRunning, setIsRunning] = useState(true);
   const interval = useRef(null);
   const ws = useRef(null);
-  const { signOut } = useAuth();
 
   useEffect(() => {
     const districtId = "7f5fa428-54e5-4f66-a1c8-0fe99010f7f7";
@@ -98,10 +88,13 @@ export default function Details() {
 
   return (
     <View style={styles.container}>
+      <View style={styles.floatTop}>
+        <Text style={styles.title}>Driver</Text>
+      </View>
       <MapView ref={mapRef} style={styles.map}>
         <Marker coordinate={region} />
       </MapView>
-      <View style={styles.float}>
+      <View style={styles.floatBottom}>
         <Text>Hola</Text>
         <Button title="Start" onPress={startInterval} />
         <Button title="Stop" onPress={stopInterval} />
@@ -118,7 +111,20 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
-  float: {
+  title: {
+    fontSize: 36,
+    marginTop: 50,
+  },
+  floatTop: {
+    position: 'absolute',
+    alignItems: 'center',
+    top: 0,
+    backgroundColor: 'white',
+    height: 100,
+    width: '100%',
+    zIndex: 100,
+  },
+  floatBottom: {
     position: 'absolute',
     height: 300,
     bottom: 50,
